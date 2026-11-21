@@ -266,7 +266,7 @@
 											var value = input.value.trim();
 											
 											var format = 'mp3';
-											var kbps = 128;
+											var kbps = 64;
 											var export_sel = false;
 											var stereo     = false;
 											var bit_depth  = 16;
@@ -343,9 +343,9 @@
 									'<label class="pk_amss" for="k04">session file (.amss)</label>' +
 									'</div>' +
 
-									'<div class="pk_row" id="frmtex-mp3"><input type="radio" class="pk_check" id="k64" name="rdslnc" value="64">'+
+									'<div class="pk_row" id="frmtex-mp3"><input type="radio" class="pk_check" id="k64" name="rdslnc" checked value="64">'+
 									'<label for="k64">64kbps</label>'+
-									'<input type="radio" class="pk_check" id="k1" name="rdslnc" checked value="128">'+
+									'<input type="radio" class="pk_check" id="k1" name="rdslnc" value="128">'+
 									'<label  for="k1">128kbps</label>' +
 									'<input type="radio" class="pk_check"  id="k2" name="rdslnc" value="192">'+
 									'<label for="k2">192kbps</label>'+
