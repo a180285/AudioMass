@@ -343,7 +343,9 @@
 									'<label class="pk_amss" for="k04">session file (.amss)</label>' +
 									'</div>' +
 
-									'<div class="pk_row" id="frmtex-mp3"><input type="radio" class="pk_check" id="k1" name="rdslnc" checked value="128">'+ 
+									'<div class="pk_row" id="frmtex-mp3"><input type="radio" class="pk_check" id="k64" name="rdslnc" value="64">'+
+									'<label for="k64">64kbps</label>'+
+									'<input type="radio" class="pk_check" id="k1" name="rdslnc" checked value="128">'+
 									'<label  for="k1">128kbps</label>' +
 									'<input type="radio" class="pk_check"  id="k2" name="rdslnc" value="192">'+
 									'<label for="k2">192kbps</label>'+
@@ -374,29 +376,21 @@
 									'<label for="k7">Stereo</label>'+
 									'</div>'+
 									'<div class="pk_row">' + 
-									'<input type="radio" class="pk_check" id="k4" name="xport" checked value="whole">'+
+									'<input type="radio" class="pk_check" id="k4" name="xport" value="whole">'+
 									'<label for="k4">Export whole file</label>'+
-									'<input type="radio" class="pk_check" id="k5" name="xport" value="sel">'+
+									'<input type="radio" class="pk_check" id="k5" name="xport" checked value="sel">'+
 									'<label class="pk_lblmp3" for="k5">Export Selection Only</label></div>',
 									
 									  setup:function( q ) {
-											var wv = PKAudioEditor.engine.wavesurfer;
 											var mt_on = activeMultitrackFor ( app );
 
-								  		// if no region
-										var region = activeRegionFor ( app );
-										if (!region) {
-											var lbl = q.el_body.getElementsByClassName('pk_lblmp3')[0];
-											lbl.className = 'pk_dis';
-										}
-
-											var chan_num = mt_on ? 2 :
-												(wv.backend.buffer ? wv.backend.buffer.numberOfChannels : 1);
-											if (chan_num === 2) {
-												q.el_body.getElementsByClassName('pk_stereo')[0].checked = true;
+											if (!activeRegionFor ( app )) {
+												q.el_body.querySelector ('#k4').checked = true;
+												q.el_body.querySelector ('#k5').disabled = true;
+												q.el_body.getElementsByClassName ('pk_lblmp3')[0].className = 'pk_dis';
 											}
 
-								  		app.fireEvent ('RequestPause');
+											app.fireEvent ('RequestPause');
 										app.ui.InteractionHandler.checkAndSet ('modal');
 										app.ui.KeyHandler.addCallback ('modalTemp', function ( e ) {
 											q.Destroy ();
